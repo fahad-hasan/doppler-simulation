@@ -14,6 +14,7 @@
                 <input type="text" name="valocity" value="0">
                 <div id="slider"></div>
             </div>
+            <p class="error"></p>
         </div>
     </div>
   </body>
@@ -32,11 +33,19 @@
         $("input[name=valocity]").on('focusout', function(){
             var velocity = $(this).val();
             //Check if user input is within [-100, 100]. If not, set it within limit
-            velocity = velocity > 100 ? 100 : velocity;
-            velocity = velocity < -100 ? -100 : velocity;
+            if (velocity > 100) {
+                velocity = 100;
+                $(".error").html("Your input exceeded the maximum allowed range of 100. We have set it to the maximum.").show();
+            } else if (velocity < -100) {
+                velocity = -100;
+                $(".error").html("Your input exceeded the minimum allowed range of -100. We have set it to the minimum.").show();
+            } else {
+                $(".error").html("").hide();
+            }
+
             $(this).val(velocity);
-            $("#slider").slider("value", val);
-            doppler.simulate(val);
+            $("#slider").slider("value", velocity);
+            doppler.simulate(velocity);
         });
         
         //Binding slider with velocity input and simulation
@@ -46,6 +55,7 @@
             value: 0,
             step: 1,
             slide: function(event, slider) {
+                $(".error").html("").hide();
                 //Update input value
                 $("input[name=valocity]").val(slider.value);
                 doppler.simulate(slider.value);
