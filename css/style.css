@@ -40,6 +40,15 @@ Styles for Dopple effect simulation
 	margin-right: 5px;
 }
 
+.simulation .error {
+	color: red;
+	padding: 5px;
+	margin: 5px -5px -5px -5px;
+	background-color: #ffd9ea;
+	border-radius: 0 0 5px 5px;
+	display: none;
+}
+
 /*
 jQuery UI overrides
 */
