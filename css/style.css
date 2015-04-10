@@ -1,0 +1,49 @@
+/*
+Styles for Dopple effect simulation
+*/
+
+* {
+	box-sizing: border-box;
+	font-family: "Tahoma";
+	font-size: 12px;
+	color: #696969;
+}
+
+.container {
+	max-width: 420px;
+	margin: 40px auto;
+}
+
+.simulation {
+	border: 1px solid #d1d1d1;
+	border-radius: 5px;
+	padding: 5px;
+}
+
+.simulation .controls {
+	border-top: 1px solid #c6c6c6;
+	padding-top: 5px;
+	line-height: 20px;
+}
+
+.simulation .controls input[type=text] {
+	width: 50px;
+	font-size: 12px;
+	padding: 2px 5px;
+	margin-left: 5px;
+}
+
+.simulation .controls #slider {
+	float: right;
+	width: 250px;
+	margin-top: 5px;
+	margin-right: 5px;
+}
+
+/*
+jQuery UI overrides
+*/
+.ui-slider .ui-slider-handle {
+	width: 0.8em;
+	height: 1.5em;
+}

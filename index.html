@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Doppler effect simulation using JavaScript and Filterous</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <div class="container">
+        <div class="simulation">
+            <img id="baseImg" src="image/star-small.png">
+            <div class="controls">
+                <label>Velocity</label>
+                <input type="text" name="valocity" value="0">
+                <div id="slider"></div>
+            </div>
+        </div>
+    </div>
+  </body>
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script type="text/javascript" src="http://www.girliemac.com/Filterous/src/filterous.js"></script>
+    <script type="text/javascript" src="js/filterous.custom.plugin.js"></script>
+    <script type="text/javascript" src="js/doppler.js"></script>
+    <script type="text/javascript">
+    $(function(){
+
+        //Lets create a new Doppler object instance
+        var doppler = new Doppler(document.getElementById("baseImg"));
+
+        //Binding velocity input with slider and simulation
+        $("input[name=valocity]").on('focusout', function(){
+            var velocity = $(this).val();
+            //Check if user input is within [-100, 100]. If not, set it within limit
+            velocity = velocity > 100 ? 100 : velocity;
+            velocity = velocity < -100 ? -100 : velocity;
+            $(this).val(velocity);
+            $("#slider").slider("value", val);
+            doppler.simulate(val);
+        });
+        
+        //Binding slider with velocity input and simulation
+        $("#slider").slider({
+            min: -100,
+            max: 100,
+            value: 0,
+            step: 1,
+            slide: function(event, slider) {
+                //Update input value
+                $("input[name=valocity]").val(slider.value);
+                doppler.simulate(slider.value);
+            }
+        });
+    });
+    </script>
+</html>
