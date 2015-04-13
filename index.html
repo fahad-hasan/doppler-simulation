@@ -28,12 +28,15 @@
 
         //Lets create a new Doppler object instance
         var doppler = new Doppler(document.getElementById("baseImg"));
+        doppler.setDebug(true);
 
         //Binding velocity input with slider and simulation
         $("input[name=valocity]").on('focusout', function(){
             var velocity = $(this).val();
-            //Check if user input is within [-100, 100]. If not, set it within limit
-            if (velocity > 100) {
+            if (isNaN(velocity)) { //Velocity is Not-a-Number
+                velocity = 0;
+                $(".error").html("Please input a valid number.").show();
+            } else if (velocity > 100) { //Check if user input is within [-100, 100]. If not, set it within limit
                 velocity = 100;
                 $(".error").html("Your input exceeded the maximum allowed range of 100. We have set it to the maximum.").show();
             } else if (velocity < -100) {

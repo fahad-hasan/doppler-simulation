@@ -10,8 +10,14 @@ Styles for Dopple effect simulation
 }
 
 .container {
-	max-width: 420px;
+	max-width: 620px;
 	margin: 40px auto;
+	text-align: center;
+}
+
+.container img,
+.container canvas {
+	text-align: center;
 }
 
 .simulation {
@@ -35,7 +41,7 @@ Styles for Dopple effect simulation
 
 .simulation .controls #slider {
 	float: right;
-	width: 250px;
+	width: 450px;
 	margin-top: 5px;
 	margin-right: 5px;
 }
